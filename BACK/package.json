@@ -1,0 +1,19 @@
+{
+  "name": "back",
+  "version": "1.0.0",
+  "description": "Backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/calgag/pop_priority.git"
+  },
+  "author": "Calvin Gagliano and Aiden Nelson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/calgag/pop_priority/issues"
+  },
+  "homepage": "https://github.com/calgag/pop_priority#readme"
+}
