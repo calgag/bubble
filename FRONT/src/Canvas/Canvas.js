@@ -1,22 +1,27 @@
 import React, { Component } from 'react';
 import './Canvas.css';
-require('paper/dist/paper-full');
+import { PaperScope } from 'paper';
 
-class Canvas extends Component {
+class Canvas extends Component<any, any> {
 
   render() {
     return (
-      <canvas ref="canvas" data-paper-resize></canvas>
+      <canvas id="canvas" ref="canvas" data-paper-resize></canvas>
     );
   }
 
-  updateCanvas(){
-    const ctx = this.refs.canvas.getContext('2d');
-    ctx.fillRect(0,0,100,100);
+  constructor(props){
+    super(props);
+
+    window['paper'] = new PaperScope();
   }
 
   componentDidMount(){
-    this.updateCanvas();
+    let scope = window['paper'];
+    scope.setup(document.getElementById('#canvas'));
+    var pscope = PaperScope.get(1);
+    pscope.activate();
+    pscope.view.update();
   }
 }
 
