@@ -1,28 +1,17 @@
-import React, { Component } from 'react';
-import './Canvas.css';
-import { PaperScope } from 'paper';
+import React from 'react';
+import { PaperContainer, Circle, Layer } from '@psychobolt/react-paperjs';
 
-class Canvas extends Component<any, any> {
+const Shapes = () => <Circle center={[120, 50]} radius={35} fillColor="#00FF00" />;
 
-  render() {
-    return (
-      <canvas id="canvas" ref="canvas" data-paper-resize></canvas>
-    );
-  }
-
-  constructor(props){
-    super(props);
-
-    window['paper'] = new PaperScope();
-  }
-
-  componentDidMount(){
-    let scope = window['paper'];
-    scope.setup(document.getElementById('#canvas'));
-    var pscope = PaperScope.get(1);
-    pscope.activate();
-    pscope.view.update();
-  }
-}
+const Canvas = (props) => (
+  <div>
+    <PaperContainer {...props}>
+      <Circle center={[80, 50]} radius={35} fillColor="red" />
+      <Layer>
+        <Shapes />
+      </Layer>
+    </PaperContainer>
+  </div>
+);
 
 export default Canvas;
