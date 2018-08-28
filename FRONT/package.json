@@ -5,6 +5,7 @@
   "dependencies": {
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
+    "react-p5-wrapper": "0.0.4",
     "react-paper-bindings": "^1.1.1",
     "react-scripts": "1.1.5"
   },
