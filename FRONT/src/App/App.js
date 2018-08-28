@@ -8,8 +8,9 @@ class App extends React.Component{
 
 	constructor(props) {
 		super(props);
-		this.state = { 
-			stateSketch: sketch
+		this.state = {
+			stateSketch: sketch,
+			stateSketch2: sketch
 		};
 	}
 
