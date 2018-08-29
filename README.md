@@ -1,2 +1,2 @@
-# bubble
-A productivity web application that Aiden brainstormed. We want to make it.
+# Pop Priority
+A productivity web application using React.JS and p5.js. Idea by Aiden.

@@ -5,15 +5,18 @@ and based on Keith Peter's Solution in Foundation Actionscript Animation: Making
 export default function sketch(p) {
   var spring = .1;
   var balls = [];
-  var numBalls, diameters, rgb;
+  var numBalls, diameters, r, g, b;
 
   p.myCustomRedrawAccordingToNewPropsHandler = function (props) {
-    numBalls = props.numBalls;
-    diameters = props.diameters;
-    rgb = props.rgb;
-    console.log("Starting drawing...");
-    console.log("==== Colors ====\nR: " + rgb[0] + "\nG: " + rgb[1] + "\nB: " + rgb[2]);
-    console.log("==== NumBalls ====\nNumBalls: " + numBalls);
+    var bubbleData = props.bubbleData;
+    console.log("Setting up data...");
+    numBalls = bubbleData.length;
+    for(var i = 0; i < numBalls; i++){
+      r[i] = bubbleData[i].color[0];
+      g[i] = bubbleData[i].color[1];
+      b[i] = bubbleData[i].color[2];
+      diameters[i] = bubbleData[i].diameter;
+    }
   }
 
   p.windowResized = function () {
@@ -21,13 +24,13 @@ export default function sketch(p) {
   }
 
   p.setup = function() {
+    console.log("Starting drawing...");
     p.createCanvas(p.windowWidth, p.windowHeight);
     for (var i = 0; i < numBalls; i++) {
       balls[i] = new Ball(Math.random()*p.width, Math.random()*p.height, diameters[i], i, balls);
     }
     p.noStroke();
-    p.fill(rgb[0], rgb[1], rgb[2]);
-    // noLoop();
+    p.textAlign(p.CENTER);
   }
 
   p.draw = function() {
@@ -46,6 +49,7 @@ export default function sketch(p) {
     this.diameter = din;
     this.id = idin;
     this.others = oin;
+    this.text = "Sample text";
 
     this.vx = 5;
     this.vy = 5;
@@ -91,7 +95,10 @@ export default function sketch(p) {
     }
 
     this.display = function() {
+      p.fill(r[this.id], g[this.id], b[this.id]);
       p.ellipse(this.x, this.y, this.diameter, this.diameter);
+      p.fill(255, 255, 255);
+      p.text(this.text, this.x, this.y);
     }
   }
 }

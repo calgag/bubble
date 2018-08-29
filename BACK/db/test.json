@@ -1,0 +1,52 @@
+[
+  {
+    "text": "Goal #1",
+    "color": [255, 0, 255],
+    "diameter": 100
+  },
+  {
+    "text": "Goal #2",
+    "color": [255, 0, 0],
+    "diameter": 120
+  },
+  {
+    "text": "Goal #3",
+    "color": [0, 255, 0],
+    "diameter": 150
+  },
+  {
+    "text": "Goal #4",
+    "color": [255, 0, 0],
+    "diameter": 100
+  },
+  {
+    "text": "Goal #5",
+    "color": [0, 0, 255],
+    "diameter": 120
+  },
+  {
+    "text": "Goal #6",
+    "color": [0, 255, 255],
+    "diameter": 150
+  },
+  {
+    "text": "Goal #7",
+    "color": [255, 0, 255],
+    "diameter": 100
+  },
+  {
+    "text": "Goal #8",
+    "color": [255, 0, 0],
+    "diameter": 120
+  },
+  {
+    "text": "Goal #9",
+    "color": [0, 255, 0],
+    "diameter": 150
+  },
+  {
+    "text": "Goal #10",
+    "color": [0, 0, 255],
+    "diameter": 150
+  }
+]

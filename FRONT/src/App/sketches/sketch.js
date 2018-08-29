@@ -23,7 +23,10 @@ export default function sketch (p) {
       x[i] = (Math.random() * p.windowWidth);
       y[i] = (Math.random() * p.windowHeight);
       direction[i] = Math.random() * 360;
-      speedx[i] = (Math.random()*(speed + speed)) - speed;
+      speedx[i] = (Math.random()*speed);
+      if(Math.random() >= 0.50000){
+        speedx[i] = 0 - speedx[i];
+      }
       speedy[i] = Math.sqrt((speed * speed) - (speedx[i] * speedx[i]));
       if(Math.random() >= 0.50000){
         speedy[i] = 0 - speedy[i];
