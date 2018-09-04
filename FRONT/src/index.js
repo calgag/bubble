@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App/App';
+import BubbleCanvas from './BubbleCanvas/BubbleCanvas';
+import HUD from './HUD/HUD';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<BubbleCanvas />, document.getElementById('BubbleCanvas'));
+ReactDOM.render(<HUD />, document.getElementById('HUD'));
 registerServiceWorker();

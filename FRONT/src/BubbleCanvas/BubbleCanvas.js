@@ -1,10 +1,10 @@
 import React from 'react';
 import P5Wrapper from 'react-p5-wrapper';
-import './App.css';
+import './BubbleCanvas.css';
 import sketch from './sketches/bubbles.js';
 
 
-class App extends React.Component{
+class BubbleCanvas extends React.Component{
 
 
 	constructor(props) {
@@ -49,4 +49,4 @@ class App extends React.Component{
 	}
 }
 
-export default App;
+export default BubbleCanvas;

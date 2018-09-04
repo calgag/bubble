@@ -33,7 +33,6 @@ app.use( function ( req, res, next ) {
 app.get('/api/getBubbleInfo', function(req, res){
     var content;
     var x = fs.readFileSync('./db/test.json');
-    console.log(x);
     res.json(JSON.parse(x));
 });
 
