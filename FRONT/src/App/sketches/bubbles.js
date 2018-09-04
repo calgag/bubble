@@ -5,10 +5,13 @@ and based on Keith Peter's Solution in Foundation Actionscript Animation: Making
 export default function sketch(p) {
   var spring = .1;
   var balls = [];
-  var numBalls, diameters, r, g, b;
+  var numBalls, diameters = [], r = [], g = [], b = [];
+  var text = [], speedinx = [], speediny = [];
+  var speed = 5;
 
   p.myCustomRedrawAccordingToNewPropsHandler = function (props) {
     var bubbleData = props.bubbleData;
+    console.log(bubbleData);
     console.log("Setting up data...");
     numBalls = bubbleData.length;
     for(var i = 0; i < numBalls; i++){
@@ -16,6 +19,12 @@ export default function sketch(p) {
       g[i] = bubbleData[i].color[1];
       b[i] = bubbleData[i].color[2];
       diameters[i] = bubbleData[i].diameter;
+      text[i] = bubbleData[i].text;
+      speedinx[i] = (Math.random() - 0.5)*speed;
+      speediny[i] = Math.sqrt((speed * speed) - (speedinx[i] * speedinx[i]));
+      if(i % 2 === 0){
+        speediny[i] = 0 - speediny[i];
+      }
     }
   }
 
@@ -27,7 +36,7 @@ export default function sketch(p) {
     console.log("Starting drawing...");
     p.createCanvas(p.windowWidth, p.windowHeight);
     for (var i = 0; i < numBalls; i++) {
-      balls[i] = new Ball(Math.random()*p.width, Math.random()*p.height, diameters[i], i, balls);
+      balls[i] = new Ball(Math.random()*p.width, Math.random()*p.height, diameters[i], i, balls, text[i], speedinx[i], speediny[i]);
     }
     p.noStroke();
     p.textAlign(p.CENTER);
@@ -43,16 +52,16 @@ export default function sketch(p) {
   }
 
 
-  function Ball(xin, yin, din, idin, oin) {
+  function Ball(xin, yin, din, idin, oin, textin, speedinx, speediny) {
     this.x = xin;
     this.y = yin;
     this.diameter = din;
     this.id = idin;
     this.others = oin;
-    this.text = "Sample text";
+    this.text = textin;
 
-    this.vx = 5;
-    this.vy = 5;
+    this.vx = speedinx;
+    this.vy = speediny;
 
     this.collide = function() {
       for (var i = this.id + 1; i < numBalls; i++) {
@@ -76,8 +85,8 @@ export default function sketch(p) {
     }
 
     this.move = function() {
-      this.x += this.vx * .01;
-      this.y += this.vy * .01;
+      this.x += this.vx * .1;
+      this.y += this.vy * .1;
       if (this.x + this.diameter / 2 > p.width) {
         this.x = p.width - this.diameter / 2;
         this.vx = 0 - this.vx;

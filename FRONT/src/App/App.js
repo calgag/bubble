@@ -11,30 +11,39 @@ class App extends React.Component{
 		super(props);
 		this.state = {
 			stateSketch: sketch,
-			bubbleData: "hi"
+			isLoaded: "No",
+			bubbleData: null
 		};
-	}
+		this.getBubbleData = this.getBubbleData.bind(this);
+		this.getBubbleData();
 
-	componentWillMount() {
-		var data = this.getBubbleData();
-		this.setState({bubbleData: data});
 	}
 
 	getBubbleData() {
 		console.log("Getting Bubble Info from Backend....");
 		var url = "http://localhost:2000/api/getBubbleInfo";
-		fetch(url).then(function(response){
+		fetch(url).then((response) => {
 			return response.json();
-		}).then(function(data) {
+		}).then((data) => {
 			console.log("Received:\n" + JSON.stringify(data, null, "\t"));
-			return data;
+			this.setState({bubbleData: data});
+			this.setState({isLoaded: "Yes"});
 		});
 	}
 
 	render () {
+		var temp;
+
+		if(this.state.isLoaded === "No"){
+			temp = <p>Loading...</p>;
+		}else if(this.state.isLoaded === "Yes"){
+			//temp = <p>Loaded!</p>;
+			temp = <P5Wrapper sketch={this.state.stateSketch} bubbleData={this.state.bubbleData}/>;
+		}
+
 		return (
 			<div>
-				<P5Wrapper sketch={this.state.stateSketch} bubbleData={this.state.bubbleData}/>
+				{temp}
 			</div>
 		);
 	}
