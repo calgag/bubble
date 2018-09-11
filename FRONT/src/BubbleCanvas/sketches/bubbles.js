@@ -7,7 +7,7 @@ export default function sketch(p) {
   var balls = [];
   var numBalls, diameters = [], r = [], g = [], b = [];
   var text = [], speedinx = [], speediny = [];
-  var speed = 5;
+  var speed = 3;
 
   p.myCustomRedrawAccordingToNewPropsHandler = function (props) {
     var bubbleData = props.bubbleData;
@@ -29,14 +29,25 @@ export default function sketch(p) {
   }
 
   p.windowResized = function () {
-    p.resizeCanvas(p.windowWidth, p.windowHeight);
+    p.resizeCanvas(p.windowWidth, p.windowHeight-100);
   }
 
   p.setup = function() {
     console.log("Starting drawing...");
-    p.createCanvas(p.windowWidth, p.windowHeight);
+    p.createCanvas(p.windowWidth, p.windowHeight-100);
     for (var i = 0; i < numBalls; i++) {
       balls[i] = new Ball(Math.random()*p.width, Math.random()*p.height, diameters[i], i, balls, text[i], speedinx[i], speediny[i]);
+      for (var j = 0; j < i; j++) {
+        var dx = balls[j].x - balls[i].x;
+        var dy = balls[j].y - balls[i].y;
+        var distance = Math.sqrt(dx * dx + dy * dy);
+        var minDist = balls[j].diameter / 2 + balls[i].diameter / 2;
+
+        if (distance < minDist) {
+          i--;
+          break;
+        }
+      }
     }
     p.noStroke();
     p.textAlign(p.CENTER);
